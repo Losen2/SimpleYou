@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengshang.im.mapper.FriendMapper">
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.fengshang.im.entity.FriendApply">
+    select 
+    *
+    from friend_applies
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.fengshang.im.entity.FriendApply">
+    INSERT  INTO friend_applies (id, apply_user_id,applied_user_id ,accept_or_refuse, create_time)
+    values (#{id,jdbcType=INTEGER}, #{applyUserId,jdbcType=INTEGER}, #{appliedUserId,jdbcType=INTEGER},
+            #{acceptOrRefuse,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="update" parameterType="com.fengshang.im.entity.FriendApply">
+    update friend_applies
+    set apply_user_id = #{applyUserId,jdbcType=INTEGER},
+     applied_user_id = #{appliedUserId,jdbcType=INTEGER},
+     accept_or_refuse = #{acceptOrRefuse,jdbcType=INTEGER},
+     create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByapplyId" resultType="com.fengshang.im.entity.FriendApply">
+    SELECT * FROM friend_applies WHERE apply_user_id = #{apply_id}
+  </select>
+  <select id="selectByappliedId" resultType="com.fengshang.im.entity.FriendApply">
+    SELECT * FROM friend_applies WHERE applied_user_id = #{applied_id}
+  </select>
+  <select id="selectByapplyandappliedId" resultType="com.fengshang.im.entity.FriendApply">
+    SELECT * FROM friend_applies WHERE apply_user_id = #{apply_id} and applied_user_id = #{applied_id}
+  </select>
+
+  <select id="getFriendList" resultType="com.fengshang.im.entity.User">
+    select * FROM user a INNER JOIN user_relation b ON (a.id = b.user_id2 and b.user_id1=#{user_id} and b.relation=1);
+  </select>
+
+
+  <insert id="addFriend">
+    INSERT  INTO user_relation (user_id1,user_id2 ,relation, create_time)
+    values (#{user_id1,jdbcType=INTEGER}, #{user_id2,jdbcType=INTEGER},
+            1,#{create_time,jdbcType=TIMESTAMP});
+  </insert>
+
+
+
+
+</mapper>

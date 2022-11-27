@@ -1,0 +1,40 @@
+{
+  "name": "SimpleYou",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "cube-ui": "~1.12.15",
+    "element-ui": "^2.15.9",
+    "esdk-obs-browserjs": "^3.22.3",
+    "indexdbwrapper": "^1.0.4",
+    "less-loader": "^11.0.0",
+    "vue": "^2.7.14",
+    "vue-router": "^3.1.6",
+    "vue-uuid": "^3.0.0",
+    "vuex": "^3.1.3"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-cube-ui": "~0.2.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "transformModules": {
+    "cube-ui": {
+      "transform": "cube-ui/src/modules/${member}",
+      "kebabCase": true
+    }
+  }
+}
